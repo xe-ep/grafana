@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web  # Ensure Traefik is listening on the `web` entry point (HTTP)
+  routes:
+    - match: Host(`grafana.home.lab`)  # Replace with your domain
+      kind: Rule
+      services:
+        - name: grafana
+          port: 80
